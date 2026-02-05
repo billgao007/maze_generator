@@ -1,11 +1,15 @@
 #!/usr/bin/env python
 # coding: utf-8
 
+# In[1]:
 
 
 import numpy as np
 import random
 import cv2
+
+
+# In[2]:
 
 
 def choosep():
@@ -14,6 +18,8 @@ def choosep():
     newp = np.array([i,j])
     return newp
 
+
+# In[3]:
 
 
 def randwalk(num,curr):
@@ -38,7 +44,7 @@ def randwalk(num,curr):
             return np.array([-1,0])+curr
         elif (i ==2):
 
-            return np.array([-1,0])+curr
+            return np.array([1,0])+curr
         elif(i == 3):
 
             return np.array([0,-1])+curr
@@ -47,12 +53,14 @@ def randwalk(num,curr):
             return np.array([0,1])+curr
 
 
+# In[4]:
 
 
 def changeval(grid,point,k):
     grid[point[0]][point[1]]=k
 
 
+# In[5]:
 
 
 def vali(grid,point):
@@ -62,10 +70,15 @@ def vali(grid,point):
         return True
 
 
+# In[6]:
+
 
 def dismantle(p,edges,way):
     edges[p[0]][p[1]][way]=0
     #way: 1 is up,2 is down, 3 is left, 4 is right
+
+
+# In[7]:
 
 
 def breakwall(p1,p2,edges):
@@ -88,6 +101,8 @@ def breakwall(p1,p2,edges):
 
 
 
+# In[8]:
+
 
 def drawmaze(grid,edges,cell=30,wall=2):
     n=grid.shape[0]
@@ -97,6 +112,7 @@ def drawmaze(grid,edges,cell=30,wall=2):
     white = (255, 255, 255)
     grey  = (120, 120, 120)
     black = (0, 0, 0)
+    color= (24,48,94)
     for i in range(n):
         for j in range(n):
             x=j*cell
@@ -106,15 +122,17 @@ def drawmaze(grid,edges,cell=30,wall=2):
             elif(grid[i][j]==1):
                 cv2.rectangle(img,(x,y),(x+cell,y+cell),white,-1)
             if (edges[i][j][1]==1 and i!=0):
-                cv2.line(img,(x,y),(x+cell,y),black,wall)
+                cv2.line(img,(x,y),(x+cell,y),color,wall)
             if(edges[i][j][3]==1 and j!=0):
-                cv2.line(img,(x,y),(x,y-cell),black,wall)
+                cv2.line(img,(x,y),(x,y+cell),color,wall)
     return img
 
 
 
+# In[ ]:
 
-num = 8
+
+num = 15
 grid = np.zeros((num,num),dtype=int)
 edges = np.ones((num,num,5),dtype=int)
 startp = np.array([1,1])
@@ -127,11 +145,11 @@ while not np.all(grid==1):#before filled
     newp = choosep()
     if not(vali(grid,newp)):
         continue
-    else: 
+    else:
 
 
 
-        #init no problem.
+        #from here init no problem.
 
 
         curr=newp.copy()
@@ -187,6 +205,11 @@ cv2.destroyAllWindows()
 
 
 
+
+
+
+
+# In[ ]:
 
 
 
