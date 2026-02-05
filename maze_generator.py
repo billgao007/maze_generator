@@ -1,15 +1,11 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[ ]:
 
 
 import numpy as np
 import random
 import cv2
-
-
-# In[ ]:
 
 
 def choosep():
@@ -18,8 +14,6 @@ def choosep():
     newp = np.array([i,j])
     return newp
 
-
-# In[ ]:
 
 
 def randwalk(num,curr):
@@ -53,14 +47,12 @@ def randwalk(num,curr):
             return np.array([0,1])+curr
 
 
-# In[ ]:
 
 
 def changeval(grid,point,k):
     grid[point[0]][point[1]]=k
 
 
-# In[ ]:
 
 
 def vali(grid,point):
@@ -70,15 +62,10 @@ def vali(grid,point):
         return True
 
 
-# In[ ]:
-
 
 def dismantle(p,edges,way):
     edges[p[0]][p[1]][way]=0
     #way: 1 is up,2 is down, 3 is left, 4 is right
-
-
-# In[ ]:
 
 
 def breakwall(p1,p2,edges):
@@ -100,8 +87,6 @@ def breakwall(p1,p2,edges):
 
 
 
-
-# In[ ]:
 
 
 def drawmaze(grid,edges,cell=30,wall=2):
@@ -128,8 +113,6 @@ def drawmaze(grid,edges,cell=30,wall=2):
 
 
 
-# In[ ]:
-
 
 num = 8
 grid = np.zeros((num,num),dtype=int)
@@ -148,7 +131,7 @@ while not np.all(grid==1):#before filled
 
 
 
-        #from here init no problem.
+        #init no problem.
 
 
         curr=newp.copy()
@@ -205,10 +188,6 @@ cv2.destroyAllWindows()
 
 
 
-
-
-
-# In[ ]:
 
 
 
